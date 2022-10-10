@@ -58,20 +58,21 @@ while True:
     
     #movimiento paleta 2 ia\
     #check ball goes to the ia 
-    fallo_ia = random.randint(1,10)
-    if fallo_ia > 1 and fallo_ia < 8:
-        if speed_ball_x > 0:
+    fallo_ia = random.randint(1,100)
+    if fallo_ia == 100:
+        pygame.draw.rect(screen,white, (200,200,20,20),1,5)
+    if (fallo_ia >= 1 and fallo_ia <= 98) and speed_ball_x > 0:
         #check if ball is up or below the padel
-            if ball_y >pos_y_p2:
-                pos_y_p2 += 3
-            if ball_y < pos_y_p2:
-                pos_y_p2 -= 3
+        if ball_y > pos_y_p2-40:
+            pos_y_p2 += 3
+        if ball_y < pos_y_p2+40:
+            pos_y_p2 -= 3
     else:
         if speed_ball_x > 0:
-            if ball_y > pos_y_p2:
-                pos_y_p2 += 2.95
-            if ball_y < pos_y_p2:
-                pos_y_p2 -= 2.95
+            if ball_y > pos_y_p2-40:
+                pos_y_p2 += 2
+            if ball_y < pos_y_p2+40:
+                pos_y_p2 -= 2
     #no superar limites con paleta superior e inferior
     if pos_y_p1 <= 0:
         pos_y_p1 = 0

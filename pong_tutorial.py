@@ -1,5 +1,4 @@
-from pydoc import plain
-from sre_parse import WHITESPACE
+import random
 import pygame,sys
 pygame.init()
 
@@ -28,14 +27,10 @@ ball_speed_x = 3
 ball_speed_y = 3
 
 def check_ball(coord_ball_y,ball_speed_y):
-    if coord_ball_y >= 600:
+    if coord_ball_y >= 600 or coord_ball_y <= 0:
         ball_speed_y *= -1
     return ball_speed_y
-def check_point(coord_ball_x):
-    if coord_ball_x <= 0 or coord_ball_x >= 800:
-        coord_ball_x = 400
-        coord_ball_y = 300
-    return (coord_ball_x, coord_ball_y)
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -46,13 +41,24 @@ while True:
     screen.fill(BLACK)
 
     #reiniciar pelota al salir a los costados
-    coord_ball_x = check_point(coord_ball_x,coord_ball_y)
-
+    # if coord_ball_x <=0 or coord_ball_x >=800:
+    #     coord_ball_x,coord_ball_y = 800,300
+    #     ball_speed_x *= random.randint(-1,1)
+    #     ball_speed_y *= random.randint(-1,1)
 
     #movement of the ball
-    check_ball(coord_ball_y,ball_speed_y)
-    coord_ball_x += ball_speed_x 
-    coord_ball_y += ball_speed_y
+    # check_ball(coord_ball_y,ball_speed_y)
+    if coord_ball_y <= 0 or coord_ball_y >= 600:
+        ball_speed_y*=-1
+    if coord_ball_x <= 0 or coord_ball_x >= 800:
+        coord_ball_x,coord_ball_y = 400,300
+        rand= random.randint(1,3)
+        if rand != 2:
+            ball_speed_x *= -1
+            ball_speed_y *= -1
+
+    coord_ball_x += ball_speed_x
+    coord_ball_y += ball_speed_y 
     
     #drawing the ball
     ball = pygame.draw.circle(screen,WHITE,(coord_ball_x,coord_ball_y),7,10)
