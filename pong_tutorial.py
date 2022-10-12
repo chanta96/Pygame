@@ -31,11 +31,7 @@ def check_ball(coord_ball_y,ball_speed_y):
     if coord_ball_y >= 600:
         ball_speed_y *= -1
     return ball_speed_y
-def check_point(coord_ball_x):
-    if coord_ball_x <= 0 or coord_ball_x >= 800:
-        coord_ball_x = 400
-        coord_ball_y = 300
-    return (coord_ball_x, coord_ball_y)
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -46,7 +42,7 @@ while True:
     screen.fill(BLACK)
 
     #reiniciar pelota al salir a los costados
-    coord_ball_x = check_point(coord_ball_x,coord_ball_y)
+    
 
 
     #movement of the ball
